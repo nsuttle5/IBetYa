@@ -20,17 +20,24 @@ html,body{
   display:flex;
   flex-direction:column;
   gap:18px;
+  justify-content:center; /* center content vertically in the viewport */
+  position:relative; /* establish a containing block for absolutely-positioned header */
 }
 .header{
-  padding:env(safe-area-inset-top,28px) 16px 18px 16px;
-  /* extra space below header */
-  margin-bottom:6px;
+  /* Position header absolutely so it can be placed above the centered content
+     while leaving the options/content block vertically centered. */
+  position:absolute;
+  top: calc(env(safe-area-inset-top,24px) + 8px);
+  left:0;
+  right:0;
+  padding: 6px 16px 8px 16px;
   text-align:center;
+  z-index:5;
 }
 .header h1{
-  margin:6px 0 10px 0;
-  font-size:48px; /* increased header size per request */
-  font-weight:600;
+  margin:px 0 10px 0;
+  font-size:72px; /* larger header as requested */
+  font-weight:700;
   color:var(--fg);
 }
 .options{
@@ -39,7 +46,8 @@ html,body{
   gap:20px;
   align-items:stretch;
   max-width:640px;
-  margin:0 auto 12px auto;
+  /* leave space for the absolutely-positioned header */
+  margin:4px auto 12px auto;
 }
 .option{
   display:flex;
@@ -99,11 +107,13 @@ html,body{
   cursor:not-allowed;
 }
 .content{
-  flex:1;
+  /* Do not grow — keep content size natural so the whole app can be vertically centered */
+  flex:0 0 auto;
   display:flex;
   align-items:flex-start;
   justify-content:center;
   padding:24px 16px;
+  margin-bottom:12px;
 }
 .lead{
   font-size:18px;
