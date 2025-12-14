@@ -16,10 +16,13 @@
 	<body>
 		<main class="app" role="main">
 			<header class="header">
-				<h1 id="title">My App</h1>
-				<div class="subheaders" role="tablist" aria-label="Options">
-					<button class="subheader" id="opt1" role="tab" aria-selected="true">Option 1</button>
-					<button class="subheader" id="opt2" role="tab" aria-selected="false">Option 2</button>
+				<h1 id="title">I Bet You</h1>
+				<!-- Options are rendered dynamically from JavaScript for easy customization -->
+				<div class="options" id="options" role="list" aria-label="Options list">
+					<!-- JS will inject option cards here -->
+				</div>
+				<div class="actions">
+					<button id="confirm-btn" class="confirm-btn" disabled>Confirm</button>
 				</div>
 			</header>
 			<section class="content" id="content">
