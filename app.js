@@ -47,4 +47,45 @@
     }, { once: true });
   });
 
+  // iOS Add-to-Home-Screen hint
+  // iOS doesn't support the beforeinstallprompt event — show a small hint instructing users how to "Add to Home Screen".
+  const iosInstallEl = document.getElementById('ios-install');
+  const iosInstallClose = document.getElementById('ios-install-close');
+
+  function isIos(){
+    const ua = window.navigator.userAgent || '';
+    return /iphone|ipad|ipod/i.test(ua);
+  }
+
+  function isInStandaloneMode(){
+    return (window.navigator.standalone === true) || window.matchMedia('(display-mode: standalone)').matches;
+  }
+
+  function showIosHintIfNeeded(){
+    if(!iosInstallEl) return;
+    if(isIos() && !isInStandaloneMode() && !localStorage.getItem('ios-install-dismissed')){
+      iosInstallEl.setAttribute('aria-hidden', 'false');
+      iosInstallEl.classList.add('visible');
+    }else{
+      iosInstallEl.setAttribute('aria-hidden', 'true');
+      iosInstallEl.classList.remove('visible');
+    }
+  }
+
+  // Wire the close button to dismiss permanently (per-device)
+  if(iosInstallClose){
+    iosInstallClose.addEventListener('click', ()=>{
+      localStorage.setItem('ios-install-dismissed', '1');
+      if(iosInstallEl){
+        iosInstallEl.setAttribute('aria-hidden', 'true');
+        iosInstallEl.classList.remove('visible');
+      }
+    });
+  }
+
+  // Show/hide on load and when returning from the background (or when installed)
+  window.addEventListener('load', showIosHintIfNeeded);
+  window.addEventListener('pageshow', showIosHintIfNeeded);
+  document.addEventListener('visibilitychange', showIosHintIfNeeded);
+
 })();

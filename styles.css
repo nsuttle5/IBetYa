@@ -63,3 +63,40 @@ html,body{
 
 /* Ensure buttons are large enough for touch */
 button{cursor:pointer}
+
+/* iOS install hint */
+.ios-install{
+  position:fixed;
+  left:12px;
+  right:12px;
+  bottom:20px;
+  background:rgba(0,0,0,0.85);
+  color:#fff;
+  border-radius:12px;
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+  transform:translateY(12px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease, transform .25s ease;
+  z-index:9999;
+}
+.ios-install[aria-hidden="false"], .ios-install.visible{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.ios-install__inner{flex:1; display:flex; align-items:center; gap:12px}
+.ios-install__text{font-size:14px; line-height:1.2}
+.ios-install__close{
+  background:transparent;
+  border:0;
+  color:#fff;
+  font-size:20px;
+  padding:6px 8px;
+  border-radius:8px;
+}
+.ios-install__close:active{opacity:0.7}

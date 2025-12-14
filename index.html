@@ -2,11 +2,13 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="apple-mobile-web-app-title" content="IllBetYa" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 		<meta name="theme-color" content="#ffffff" />
 		<!-- iOS fullscreen -->
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='192' height='192'><rect width='100%25' height='100%25' fill='%23000000' /><text x='50%25' y='50%25' font-size='72' fill='%23ffffff' text-anchor='middle' dominant-baseline='central'>IB</text></svg>">
 		<link rel="manifest" href="manifest.json" />
 		<title>Full Screen PWA</title>
 		<link rel="stylesheet" href="styles.css" />
@@ -23,6 +25,13 @@
 			<section class="content" id="content">
 				<p class="lead">Choose an option above.</p>
 			</section>
+			<!-- iOS install hint; shown only on iOS Safari when not running standalone -->
+			<div id="ios-install" class="ios-install" role="dialog" aria-hidden="true">
+				<div class="ios-install__inner">
+					<div class="ios-install__text">Install this app for a full-screen experience: tap the Share button in Safari and choose "Add to Home Screen".</div>
+					<button id="ios-install-close" class="ios-install__close" aria-label="Dismiss">×</button>
+				</div>
+			</div>
 		</main>
 
 		<script src="app.js" defer></script>
