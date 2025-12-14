@@ -43,7 +43,7 @@ html,body{
 .options{
   display:flex;
   flex-direction:column;
-  gap:20px;
+  gap:40px;
   align-items:stretch;
   max-width:640px;
   /* leave space for the absolutely-positioned header */
@@ -52,7 +52,7 @@ html,body{
 .option{
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:2px;
   padding:18px 16px;
   border-radius:14px;
   /* slightly stronger translucent grey for better contrast */
@@ -159,3 +159,18 @@ button{cursor:pointer}
   border-radius:8px;
 }
 .ios-install__close:active{opacity:0.7}
+
+/* Hide native scrollbars on touch devices while preserving scroll behaviour.
+   This removes the visible scrollbar track on mobile (iOS/Android) but still allows users to scroll.
+   If you prefer to disable scrolling entirely on small screens, we can set `overflow: hidden` instead. */
+@media (pointer:coarse) {
+  html, body {
+    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none; /* Safari/WebKit */
+    width: 0;
+    height: 0;
+  }
+}
